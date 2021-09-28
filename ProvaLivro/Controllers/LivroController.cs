@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProvaLivro.Data;
 using ProvaLivro.Models;
+using System.Linq;
 
 namespace ProvaLivro.Controllers
 {
@@ -18,19 +19,16 @@ namespace ProvaLivro.Controllers
 
         [HttpPost]
         [Route("create")]
-        public Livro Create(Livro livro)
+        public IActionResult Create([FromBody] Livro livro)
         {
             _context.TabLivro.Add(livro);
-            return livro;
+            _context.SaveChanges();
+            return Created("", livro);
         }
 
         [HttpGet]
         [Route("list")]
-        public Livro list(Livro livro)
-        {
-            _context.TabLivro.Add(livro);
-            return livro;
-        }
+        public IActionResult List() => Ok(_context.TabLivro.ToList());
 
     }
 }
