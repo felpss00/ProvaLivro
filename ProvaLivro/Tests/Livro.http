@@ -1,0 +1,12 @@
+###
+POST https://localhost:5001/api/livro/create
+Content-Type: application/json
+
+{
+    "Nome": "HP",
+    "Genero": "Magia",
+    "Ano": 1990
+}
+
+###
+GET https://localhost:5001/api/livro/list
